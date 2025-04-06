@@ -25,8 +25,11 @@ def init_components():
     if yolo_model is None:
         yolo_model = YOLO('yolov8n.pt')
 
-app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Change this in production
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
 
 # Admin credentials
 ADMIN_EMAIL = "admin@example.com"
